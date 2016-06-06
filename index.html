@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+#sListAll ul li{
+    height: 40px;
+}
+#sListAll ul li a{
+    display: block;;
+    width: 300px;
+    padding: 10px 10px 10px 10px;
+    font-size: 20px;
+}
+.sList1{
+    background-color: gray;
+    color:white ;
+    border: #1E1E1E 3px solid;
+}
+#sListAll ul li a:hover{ 
+    background-color: #2d5986;
+}
+</style>
+ <script language="javascript" type="text/javascript" src="ko/knockout-3.4.0.js"></script>
+
+<div id="sListAll">
+    <ul data-bind="foreach: ResArray">
+        <li><a class="sList1" href='#' data-bind:"click:alert('AA')"><span data-bind="text: name"></span></a>
+        </li>
+         <br>
+    </dl>       
+</div> 
+
+<script type="text/javascript">
+
+function ObjRes(name, addr){
+    this.name=ko.observable(name);
+    this.addr=ko.observable(addr);
+}
+ function AppViewModel(){
+        this.ResArray=ko.observableArray([]);
+        this.AddRes = function(name, addr){
+        this.ResArray.push(new ObjRes(name, addr));
+       };
+    }
+var vm = new AppViewModel();
+ko.applyBindings(vm);
+vm.AddRes("First","aaa");vm.AddRes("Second","bbb");vm.AddRes("Third","ccc");vm.AddRes("Fourth","ddd");
+        
+</script>
+</html>
